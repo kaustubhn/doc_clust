@@ -25,8 +25,8 @@ def create_vectors(filename):
 	sentences = []
 	with bz2.open(filename, 'rt') as df:
 		for l in df:
-			sentences.append(l.split())
-	model = Word2Vec(sentences, size=25, window=5, min_count=5, workers=4)
+			sentences.append(" ".join(l.split(",")).split())
+	model = Word2Vec(sentences, size=25, window=5, min_count=1, workers=4)
 	model.save(r"../vectors/"+filename.split("/")[-1].split(".")[0]+".vec")
 	return model
 
@@ -39,8 +39,8 @@ def create_vectors(filename):
 # strip_data(r"../data/telugu.txt")
 
 # Create vectors
-# create_vectors(r"../data/bengali.csv.bz2")
-# create_vectors(r"../data/hindi.csv.bz2")
-# create_vectors(r"../data/marathi.csv.bz2")
-# create_vectors(r"../data/tamil.csv.bz2")
-# create_vectors(r"../data/telugu.csv.bz2")
+create_vectors(r"../data/bengali.csv.bz2")
+create_vectors(r"../data/hindi.csv.bz2")
+create_vectors(r"../data/marathi.csv.bz2")
+create_vectors(r"../data/tamil.csv.bz2")
+create_vectors(r"../data/telugu.csv.bz2")
